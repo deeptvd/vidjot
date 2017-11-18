@@ -40,6 +40,17 @@ app.get('/about', (req, res) => {
   res.render('about');
 });
 
+//Idea index page
+app.get('/ideas', (req, res) => {
+  Idea.find({})
+    .sort({date: 'desc'})
+    .then(ideas => {
+      res.render('ideas/index', {
+        ideas:ideas
+      });
+    });
+});
+
 //Add Idea Form
 app.get('/ideas/add', (req, res) => {
   res.render('ideas/add');
